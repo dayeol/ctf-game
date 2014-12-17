@@ -1,0 +1,16 @@
+<h1>Ranking</h1>
+<div class=rank-board>
+	<% @ranking.each do |row| %>
+		<a href='/users/<%=row[:user_id]%>'>
+		<% if row[:user_id] == current_user.id %>
+		<div class=myrow>
+		<% else%>
+		<div class=row>
+		<% end%>
+			<div class="rank color<%=rankcolor(row[:rank]) %>"><%= row[:rank] %></div>
+			<div class=name><%= row[:name] %></div>
+			<div class="score color<%=rankcolor(row[:rank]) %>"><%= row[:points] %></div>
+		</div>
+		</a>
+	<% end %>
+</div>

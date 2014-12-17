@@ -1,0 +1,38 @@
+<h1>Problems</h1>
+	<div style="width:900px">
+		<%if is_admin?%>
+		<div class=pull-right>New Problem <%= link_to '<i class=icon-plus-sign></i>'.html_safe, new_problem_path%><br/></div>
+		<%end%>
+		</div>
+	<br/>
+	<div class="problems problems-wide">
+	<div class=container>
+
+		<% @parts = 
+		[{:name => 'develop1', :variable => @develop1_problems, :title => 'Develop1'},
+		{:name => 'develop2', :variable => @develop2_problems, :title => 'Develop2'},
+		{:name => 'develop3', :variable => @develop3_problems, :title => 'Develop3'},
+		{:name => 'google', :variable => @google_problems, :title => 'Google'},
+		{:name => 'game', :variable => @game_problems, :title => 'Game'},
+		{:name => 'trivial', :variable => @trivial_problems, :title => 'Trivial'}];
+
+		@parts.each do |part|
+		%>
+			<div class="<%= part[:name]%>"><div class="detail-head"><%=part[:title]%></div>
+			<% part[:variable].each do |problem|%>
+				<table><tr><td><a href="problems/<%=problem.id%>">
+				<div class="cell"><div><%=problem.name%></div><div><%=problem.point %></div></div></a></td><td><div class="detail-cell">
+					<div class="details"><%=problem.hint.gsub(/\n/,'<br />').html_safe%></div>
+					<%if is_admin? or is_his_problem? problem.id%>
+					<div class="icons pull-right">
+						<%= link_to '<i class=icon-cog></i>'.html_safe , edit_problem_path(problem) %>
+						<%= link_to '<i class=icon-trash></i>'.html_safe , problem, :confirm => 'Are You Sure?', :method => 'delete' %>
+					</div></div></td></tr>
+					<%end%>
+				</table>
+			<%end%>
+			</div>
+		<%end%>
+
+	</div>
+</div>

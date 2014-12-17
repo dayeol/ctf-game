@@ -1,0 +1,106 @@
+<h2>Game Status</h2>
+
+<div class="btn-group">
+	<button value="closed" id="closed_btn" class="statusbtn btn">Closed</button>
+	<button value="started" id="started_btn" class="statusbtn btn">Started</button>
+	<button value="finished" id="finished_btn" class="statusbtn btn">Finished</button>
+</div>
+
+<script>
+	function setBtnActive( status )
+	{
+		$(".statusbtn").removeClass("btn-primary")
+		$("#"+status+"_btn").addClass("btn-primary")
+	}
+	function updateStatus(){
+		$.ajax({ 
+			url: "status"
+		}).done(function( data ){
+			setBtnActive( data.status )
+		})
+	}
+	$(function(){ updateStatus(); 
+		$(".statusbtn").click(function(){
+			$.ajax({
+				type: "POST",
+				url: "status",
+				data: { status: String(this.value) }
+			}).done(function( data ){
+				setBtnActive( data.status )
+			})
+		})
+	});
+</script>
+
+<br><br><br>
+<h2>Give Penalty</h2>
+
+<h4>Team Name</h4>
+<form action="/penalty" method="POST">
+<%= select(:penalty, :user_id, User.all.collect {|u| [u.name, u.id]}) %>
+<%= select(:penalty, :percentage, (1..20).to_a.collect { |i| [ i.to_s+"%" , i]}) %> <br>
+<input class="btn" type="submit" name="Give Penalty!">
+</form>
+
+<br><br>
+<h2>Users</h2>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>ID</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.name %></td>
+    <td><%= user.email %></td>
+    <td><%= link_to 'Show', user %></td>
+    <td><%= link_to 'Edit', edit_user_path(user) %></td>
+    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br>
+<h2>Admin Authority</h2>
+
+<table class="table">
+  <tr>
+  	<th>ID</th>
+  	<th>delete</th>
+  </tr>
+<% @admins.each do |admin| %>
+  <tr>
+  	<td><%= admin.email %></td>
+  	<% if admin.email == current_user.email %>
+  		<td></td>
+  	<% else %>
+  		<td><%= link_to 'remove authority', '/admin/'+admin.id.to_s, :confirm => 'Are you sure?', :method => :delete %></td>
+  	<% end %>
+  </tr>
+<% end %>
+</table>
+
+<form id="addadmin" class="form-inline" method="post" action="/admin" >
+	<input autocomplete="off" id="adminemail" class="input" type="text" name="admin">
+	<input class="btn" name="ADD" type="submit">
+</form>
+
+<script>
+	$(function(){
+		$.ajax({
+			url: "/users.json"
+		}).done(function( data ){
+			$("#adminemail").typeahead( { source: data } )
+		})
+	})
+</script>
+
+
+
+
+

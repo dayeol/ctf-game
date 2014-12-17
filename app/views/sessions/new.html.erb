@@ -1,0 +1,20 @@
+<div class=container>
+<div style="margin:100px 0 100px 0">
+<%if signed_in?%>
+	<script>
+		location.href = "/users";
+	</script>
+<%end%>
+<h1>Hacker Fight</h1>
+<h3>Sign in & Enjoy the Game :) - by dyori</h3>
+	<%= form_for(:session, url: sessions_path) do |f| %>
+		<%= f.label :ID, "ID"%>
+		<%= f.text_field :email%>
+		<%= f.label :password%>
+		<%= f.password_field :password%><br/>
+		<%= f.button "Sign in" , class: "btn"%>
+	<% end%>
+	or <a href=/signup>Sign Up Now</a>
+</form>
+</div>
+</div>

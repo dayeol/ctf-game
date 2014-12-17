@@ -1,0 +1,8 @@
+<h2>Give Penalty</h2>
+
+<h4>Team Name</h4>
+<form action="/penalty" method="POST">
+<%= select(:penalty, :user_id, User.all.collect {|u| [u.name, u.id]}) %>
+<%= select(:penalty, :percentage, (1..20).to_a.collect { |i| [ i.to_s+"%" , i]}) %> <br>
+<input class="btn" type="submit" name="Give Penalty!">
+</form>

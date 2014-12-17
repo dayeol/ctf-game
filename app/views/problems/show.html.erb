@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b><br/>
+  <%= @problem.name %>
+</p>
+
+<p>
+  <b>Made by:</b><br/>
+  <%= link_to @maker.name, user_path(@maker.id) %>
+</p>
+
+<p>
+  <b>Category:</b><br/>
+  <%= @problem.category %>
+</p>
+
+<p>
+  <b>Point:</b><br/>
+  <%= @problem.point %>
+</p>
+
+<p>
+  <b>Hint:</b><br/>
+  <%= @problem.hint %>
+</p>
+
+<p>
+	<b>File:</b><br/>
+	<% if (@problem.file.path != nil) %>
+		<a href=<%=@problem.file_url%>><%=@problem.file.path.split("/").last%></a>
+	<% end%>
+</p>
+<p>
+	<b> Top Solvers: </b><br/>
+	<% @solvers.each do |solver|%>
+		<%= solver['name']%><br/>
+	<% end%>
+</p>
+<%= link_to 'List', problems_path%>

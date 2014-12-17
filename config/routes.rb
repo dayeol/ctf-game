@@ -1,5 +1,29 @@
 CTF::Application.routes.draw do
-  # The priority is based upon order of creation:
+	
+	resources :users
+	resources :solves
+  resources :problems
+  resources :home
+  resources :sessions, only: [:new, :create, :destroy]
+  match '/pages' => 'pages#index'
+  match '/signup' => 'users#new'
+  match '/signin' => 'sessions#new'
+  match '/signout' => 'sessions#destroy',via: :delete
+  match '/solved' => 'solves#solved'
+  match '/ranking' => 'solves#ranking'
+	match '/ranks'=> 'solves#index'
+	match '/not_yet' => 'pages#closed'
+  match '/keygen' => 'keygen#generate'
+  get '/penalty' => 'penalty#new'
+  post '/penalty' => 'penalty#create'
+
+  get '/admin' => 'home#admin'
+  post '/admin' => 'home#create_admin'
+  delete '/admin/:id' => 'home#delete_admin'
+
+  get '/status' => 'gamestatus#show'
+  post '/status' => 'gamestatus#set'
+	# The priority is based upon order of creation:
   # first created -> highest priority.
 
   # Sample of regular route:

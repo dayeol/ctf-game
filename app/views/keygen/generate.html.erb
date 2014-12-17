@@ -1,0 +1,10 @@
+<h2>Upload Output File</h2>
+
+<form action="./keygen" method="post" enctype="multipart/form-data">
+	<input type="file" name="file">
+	<input type="submit">
+</form>
+
+<% if @key != ""%>
+	<div class="alert alert-success">The generated key is <span class="label"><%= @key %></span>. Is it a correct key? I don't know...... Just try it :)</div>
+<% end %>

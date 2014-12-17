@@ -1,0 +1,101 @@
+// Place all the styles related to the Problems controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.problems
+{
+	width:600px;
+	background:white;
+	border:1px solid #ccc;
+}
+.problems-wide
+{
+	width:900px;
+}
+.problems a:hover {text-decoration:none;}
+.problems .cell , .problems .head
+{
+	font-weight:bold;
+	width:80px;
+	height:80px;
+	color:#fff;
+	margin: 5px 5px 5px 5px;
+	padding: 5px 5px 5px 5px;
+	text-align:center;
+}
+
+.problems .cell-selected
+{
+	font-weight:bold;
+	width:80px;
+	height:80px;
+	color:#fff;
+	margin: 5px 5px 5px 5px;
+	padding: 5px 5px 5px 5px;
+	text-align:center;
+	background:#888;
+}
+
+.problems .detail-cell, .problems .detail-head
+{
+	text-align:center;
+	font-weight:bold;
+	height:80px;
+	width:880px;
+	color:white;
+	margin: 5px 5px 5px 5px;
+	padding: 5px 5px 5px 5px;
+}
+.problems .detail-head
+{
+	height:30px;
+	line-height:30px;
+	background:#444;
+}
+.problems .detail-cell
+{
+	color:black;
+	width:775px;
+	background:#eee;
+	height:80px;
+}
+.problems .detail-cell .icons {height:20px; line-height:20px;}
+.problems .detail-cell .details {text-align:left;height:60px; word-wrap:break-word; overflow:auto;}
+
+.problems .cell .d, .problems .cell-selected .d {height:40px; line-height:40px;}
+
+.problems .cell-solved .solved-mark
+{
+	position:absolute;
+	width:80px;
+	height:80px;
+	background:url('/images/solved.gif') center no-repeat;
+	background-size: 80px 40px;
+}
+
+.problems .head
+{
+	height:60px;
+	line-height:60px;
+	background:#444;
+}
+
+.problems .column {float:left;}
+.problems .column:hover {background:#999;}
+
+.problems .develop1 .cell {background:#ff0066;}
+.problems .develop1 .cell:hover, .problems .develop1 .cell-solved {background:#330011;}
+
+.problems .develop2 .cell {background:#ff6600;}
+.problems .develop2 .cell:hover, .problems .develop2 .cell-solved {background:#331100;} 
+
+.problems .develop3 .cell {background:#55ee55;}
+.problems .develop3 .cell:hover, .problems .develop3 .cell-solved {background:#113311;}
+
+.problems .google .cell {background:#00cccc;}
+.problems .google .cell:hover, .problems .google .cell-solved  {background:#003333;}
+
+.problems .game .cell {background:#0066ff;}
+.problems .game .cell:hover, .problems .game .cell-solved  {background:#001130;}
+
+.problems .trivial .cell {background:#9933ff;}
+.problems .trivial .cell:hover, .problems .trivial .cell-solved  {background:#201535;}

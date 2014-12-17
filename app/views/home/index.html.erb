@@ -1,0 +1,86 @@
+
+<h2>Problems</h2>
+<div class=row>
+<div class=span8>
+
+
+<div class=problems>
+	<div class=container>
+
+		<% @parts = 
+		[{:name => 'develop1', :variable => @develop1_problems, :title => 'Develop1'},
+		{:name => 'develop2', :variable => @develop2_problems, :title => 'Develop2'},
+		{:name => 'develop3', :variable => @develop3_problems, :title => 'Develop3'},
+		{:name => 'google', :variable => @google_problems, :title => 'Google It'},
+		{:name => 'game', :variable => @game_problems, :title => 'Play!'},
+		{:name => 'trivial', :variable => @trivial_problems, :title => 'Trivial'}];
+		
+		@parts.each do |part|
+		%>
+		<div class=column>
+			<div class="<%= part[:name]%>">
+				<div class="head"><%=part[:title]%></div>
+				<% part[:variable].each do |problem|%>
+					<a href="javascript:showproblem(<%=problem.id%>)">
+					<div class="cell" id="probcell-<%=problem.id%>">
+						<div class="solved-mark">
+						<div class="d"><%=problem.name%></div>
+						<div class="d"><%=problem.point %></div>
+						</div>
+					</div><!--cell-->
+					</a>
+			<%end%>
+			</div>
+		</div><!--column-->
+
+		<%end%>
+
+	</div><!--container-->
+</div><!--problems-->
+
+<h2>Recent Records</h2>
+<div class=logboard>
+	<% @logs.each do |log|%>	
+		<div class=row>
+			<% if log[:type] == "1" %>
+				<%=log[:time]%> : "<a href="/users/<%=log[:uid]%>"><%=log[:uname]%></a>" solved "<a href="/problems/<%=log[:pid]%>"><%=log[:pname]%></a>"
+			<% else %>
+				<%= log[:time] %> : "<a href="/users/<%=log[:uid]%>"><%=log[:uname]%></a>" got <%=log[:pname]%>% of penalty
+			<% end %>
+		</div>
+	<% end%>
+</div><!--logs-->
+
+</div><!--span8-->
+
+<div class=span4>
+	<div class=solveboard id=solve>
+		<div class=information>
+			<div class=point></div>
+			<div class="name"></div>
+			<div class=file></div>
+			<div class=hint></div>
+		</div>
+		<div class="key">		
+			<%= form_for(:try , :html => {:class => 'form-inline', :id => 'tryform'}, :remote =>true, :url => '/solves' , :method => 'post') do |f|%>
+				<%=f.text_field :pid, :id => 'num', 'type' => 'hidden' %>
+
+				<i class=icon-thumbs-down></i> <%=f.text_field :key, :placeholder => 'Key' %>
+				<%=f.button 'Go', :class => 'btn btn-primary', :remote => true %>
+			<%end%>
+		</div>
+	</div>
+	<h2>Ranking<a id="refresh-ranking"><i class="pull-right icon-refresh"></i></a></h2>
+	<div class=scoreboard id=score>
+		<div class=rank-title><h3>Your Score</h3></div>
+		<div class=myscore>
+			<div class=rank>1</div>
+			<div class=name><%=current_user.name%></div>
+			<div class="score">10</div>
+		</div>
+		<div class=rank-title><h3>Top Players</h3></div>
+		<div class=top-players>
+		</div>
+	</div>
+</div><!--span4-->
+</div><!--row-->

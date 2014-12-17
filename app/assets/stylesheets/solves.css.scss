@@ -1,0 +1,44 @@
+// Place all the styles related to the Solves controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.rank-board
+{
+	width:900px;
+	border:1px solid #ccc;
+	background:white;
+}
+
+.rank-board .row
+{
+	height:50px;
+	margin:10px 10px 10px 10px;
+}
+.rank-board .rank,
+.rank-board .name,
+.rank-board .score
+{
+	font-weight:bold;
+	font-size:30px;
+	text-align:center;
+	height:50px;
+	line-height:50px;
+	float:left;
+}
+
+.rank-board .rank {width:10%; color:white;}
+.rank-board .name {width:60%;background:#eee;color:#444; }
+.rank-board .score {width:30%; color:white;}
+
+.rank-board .row:hover
+{
+	box-shadow: 0px 0px 10px #000;
+}
+
+.rank-board .myrow
+{
+	height:50px;
+	margin:5px;
+	border:5px solid #222;
+}
+

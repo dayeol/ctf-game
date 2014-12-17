@@ -1,0 +1,32 @@
+<%= form_for (@problem) do |f|%>
+	<% if @problem.errors.any? %>
+		<div id="error_explanation">
+			<h3><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h3>
+			<ul>
+			 <% @problem.errors.full_messages.each do |msg|%>
+			 	<li><%= msg %></li>
+				<%end%>
+			</ul>
+		</div>
+	<% end%>
+
+	<%= f.label :name, 'Name (10 bytes)'%> 
+	<%= f.text_field :name , { :maxlength => 11 } %>
+
+	<%= f.label :category %>
+	<%= f.select :category,['develop1','develop2','develop3','google','game','trivial']%>
+	
+	<%= f.label :point%>
+	<%= f.text_field :point%>
+	
+	<%= f.label :file%>
+	<%= f.file_field :file%>
+
+	<%= f.label :key%>
+	<%= f.text_field :key %>
+	
+	<%= f.label :hint%>
+	<%= f.text_area :hint, :style => 'width:800px; height:200px;'%><br/>
+	
+	<%= f.button class: 'btn'%>
+<%end%>

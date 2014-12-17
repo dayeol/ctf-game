@@ -1,0 +1,16 @@
+<div class=ctfready>
+	<div class=msg>
+	<h1>Hacker Fight is about to open!</h1>
+	</div>
+	<br/>
+	<br/>
+	<h2>Participants (<%=@users.length %>)</h2>
+	<div class=users>
+	<ul>
+	<% @users.each do |user| %>
+		<li><h3><%=user.email%> (<%=user.name%>)</h3></li>
+	<% end%>
+	</ul>
+	</div>
+</div>
+

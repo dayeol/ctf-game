@@ -1,0 +1,57 @@
+@import 'bootstrap';
+
+#doc
+{
+	background-color: #fff;
+	padding-top:70px;
+	padding-bottom: 100px;
+}
+
+.border-basic
+{
+	padding: 15px 15px 15px 15px;
+	border:1px dashed #ddd;
+}
+.background-gray
+{
+	background:#f9f9f9;
+}
+
+.logboard
+{
+	background:white;
+	width:600px;
+	border:1px solid #ccc;
+}
+.logboard .row
+{
+	font-weight: bold;
+	color:#222;
+	padding:5px;
+	background:#eee;
+	border:1px solid #ccc;
+	margin:5px;
+}
+.logboard .row:hover
+{
+	background:#fefefe;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+	font-family: Comic Sans MS;
+
+}
+
+body
+{
+	background-color: #222;
+}
+.footer
+{
+	color:#bbb;
+	background-color: #222;
+	text-align:center;
+	padding-top:50px;
+	padding-bottom:50px;
+}

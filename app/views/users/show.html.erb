@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b><br/>
+  <%= @user.name %>
+</p>
+
+<p>
+  <b>ID:</b><br/>
+  <%= @user.email %>
+</p>
+
+<p>
+  <b>Score:</b><br/>
+  <%= @score %>
+</p>
+
+<p>
+  <b>Penalty:</b><br/>
+  <%= @user.total_penalty %>%
+</p>
+
+<p>
+  <b>Solved Problems:</b><br/>
+  <% @solved.each do |sol| %>
+		<a href='/problems/<%=sol.id%>'><%= sol.name%></a> <br/>
+	<% end %>
+</p>
+
+<%= link_to 'Home', '/'%>
